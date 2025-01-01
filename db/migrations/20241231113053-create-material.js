@@ -40,7 +40,8 @@ module.exports = {
         type: Sequelize.STRING
       },
       sku: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        defaultValue : null
       },
     });
   },
