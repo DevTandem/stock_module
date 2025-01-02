@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   warehouse_material.init({
     serial_id: DataTypes.STRING,
-    material_id: DataTypes.INTEGER,
+    material_id: DataTypes.STRING,
     w_id: DataTypes.INTEGER
   }, {
     sequelize,

@@ -7,16 +7,17 @@ const material = MaterialModel(sequelize , DataTypes)
 const warehouse_model = require("../db/models/warehouse_material");
 const w_m = warehouse_model(sequelize , DataTypes)
 
-const {MongoClient} = require("mongodb")
+const {initializeDb} = require("../config/db")
+const { MongoClient, ObjectId } = require("mongodb")
 
-const db = MongoClient()
-const collection = db.collection("products")
+
 const { v4: uuidv4 } = require('uuid');
 
 
 const addMaterial = async (req,res) => {
     const {w_id,material_id,colour} = req.query
     const {in_qty,each_size} = req.body
+
 
     if(!w_id || !material_id){
         return res.status(400).json({
@@ -29,8 +30,12 @@ const addMaterial = async (req,res) => {
     }
     
     try {
-        const check_material = await collection.find({id: material_id})
+        const db = await initializeDb();
+        const collection = db.collection("products");
+        console.log("material_id",material_id)
 
+        const check_material = await collection.findOne({_id : new ObjectId(material_id)})
+        console.log("check_material",check_material)
         if(!check_material){
             return res.status(404).json({
                 status : 404,

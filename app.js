@@ -22,9 +22,3 @@ client.connect().then(() => {
     console.log(err);
 });
 
-const connection = MongoClient.connect(process.env.Mongo_URL).then((err , client)=> {
-    const db = client.db(process.env.MONGO_DB_NAME)
-    console.log("Connected to Mongo database successfully")
-}).catch((err) => {
-    console.log(err);
-});

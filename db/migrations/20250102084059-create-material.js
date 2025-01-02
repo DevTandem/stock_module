@@ -27,10 +27,6 @@ module.exports = {
       serial_id: {
         type: Sequelize.STRING,
         unique : true,
-        references : {
-          model : "warehouse_materials",
-          key : "serial_id"
-        },
         allowNull : false
       },
       status: {
